@@ -1,3 +1,6 @@
+/.idea/
+/out/
+/2015.iml
 # Compiled class file
 *.class
 

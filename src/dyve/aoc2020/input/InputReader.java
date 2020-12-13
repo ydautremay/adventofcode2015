@@ -1,0 +1,34 @@
+package dyve.aoc2020.input;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+public class InputReader implements Closeable {
+
+    BufferedReader br;
+
+    private InputReader(BufferedReader br){
+        this.br = br;
+    }
+
+    public static InputReader readInput(int suffix) {
+        final InputStream is = InputReader.class.getResourceAsStream("/resources/day"+suffix);
+        final Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
+        return new InputReader(new BufferedReader(r));
+    }
+
+    public Stream<String> stream(){
+        return br.lines();
+    }
+
+    @Override
+    public void close() throws IOException {
+        br.close();
+    }
+}
