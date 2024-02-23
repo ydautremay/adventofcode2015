@@ -11,12 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Part1 extends Part {
+public class Part2 extends Part {
 
     private final static Pattern linePattern = Pattern.compile("(\\w+) to (\\w+) = (\\d+)");
 
     public static void main(String[] args) throws Exception {
-        new Part1().subMain(9);
+        new Part2().subMain(9);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Part1 extends Part {
             itinerary.addRoute(start);
             itineraries.addAll(buildItineraries(itinerary, routes.stream().filter(r -> !r.getTo().equals(start.getFrom())).collect(Collectors.toSet())));
         }
-        return itineraries.stream().filter(i -> i.nbLocations() == locations.size()).mapToInt(Itinerary::length).min().orElseThrow();
+        return itineraries.stream().filter(i -> i.nbLocations() == locations.size()).mapToInt(Itinerary::length).max().orElseThrow();
     }
 
     private Set<Itinerary> buildItineraries(Itinerary itinerary, Set<Route> routes){
